@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<section>
+
+	<div class="main-con">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-3">
+				<div class="update-add-form">
+					<h1 th:text="${context}" align="center"
+						style="color: #fff; padding: .4rem; background-color: #414141"></h1>
+					<form th:action="@{/group/}+${groupId}" method="POST"
+						th:object="${group}" enctype="multipart/form-data">
+
+						<img class="image-upload" th:src="@{/img/} + ${image}"
+							onclick="document.getElementById('profile-image').click()" />
+
+
+						<div class="d-flex justify-content-around mb-3">
+							<input id="group name" class="form-control w-50 m-3"
+								th:field="*{name}" required autofocus="autofocus"
+								placeholder="Group Name" />
+						</div>
+
+						<div class="search-container" align="center">
+							<input id="search-input" onkeyup='searchGroupContact()'
+								class="form-control w-50" type="search" placeholder="Search"
+								aria-label="Search">
+							<div class="contact-group w-50 p-2">
+								<select class="form-select text-warning"
+									id="show-contacts-group" multiple data-live-search="true"
+									th:field="*{contactIds}">
+									<option th:each="e: ${contactmap.entrySet()}"
+										th:value="${e.key}" th:text="${e.value}" th:selected="true"></option>
+								</select>
+
+							</div>
+						</div>
+
+						<div class="d-flex justify-content-around mb-3">
+							<input id="description" class="form-control w-50 m-3"
+								th:field="*{description}" required autofocus="autofocus"
+								placeholder="Group Description" />
+						</div>
+
+						<div class="custom-file m-3 d-flex justify-content-around">
+							<input class="form-control w-50" name="groupImage" type="file"
+								onchange="getImagePreviewUpadate(event)" id="profile-image"
+								hidden="true">
+						</div>
+
+						<div class="form-group mt-4 d-flex justify-content-between">
+							<button type="submit" class="btn w-75 add-btn">Update</button>
+							<a th:href="@{/group/remove/}+${groupId}" type="w-75"
+								class="add-btn btn">Remove </a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+</html>

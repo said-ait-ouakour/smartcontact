@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<section>
+
+	<div class="main-con">
+
+		<div class="dashboard container d-flex flex-column">
+
+			<div class="d-flex flex-row justify-content-between">
+				<h5 class="">Dashboard</h5>
+				<p class="today-date" th:text=${today}></p>
+			</div>
+			<div class="welcom-bar d-flex flex-row justify-content-between">
+				<div class="d-flex flex-column">
+					<h3 class="red-text">
+						Welcome back <span th:text="${name}"></span> 😃!
+					</h3>
+					<p class="callout-text">Happy to manage your Contacts🧡, Here
+						is some statistics about your Contacts</p>
+				</div>
+				<img th:src="@{/img/mavatar1.png}" width="400" height="250" />
+
+			</div>
+			<div class="d-flex flex-row justify-content-around">
+				<div class="card-stats p-3">
+					<p class="stat-text">
+
+						<i class="bi bi-gender-male"></i> Male Contacts : <span
+							th:text="' '+${male_contacts}"></span>
+					</p>
+				</div>
+				<div class="card-stats p-3">
+					<p class="stat-text">
+						<i class="bi bi-gender-female"></i> Female Contacts : <span
+							th:text="' '+${female_contacts}"></span>
+					</p>
+				</div>
+				<div class="card-stats p-3">
+					<p class="stat-text">
+						<i class="bi bi-people-fill"></i> Group Number : <span
+							th:text="' '+${group_number}"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</div>
+</section>
+</html>

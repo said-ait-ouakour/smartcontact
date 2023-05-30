@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<section>
+
+	<div class="main-con">
+		<div class="container">
+			<form th:action="@{/user/settings}" method="POST" th:object="${user}"
+				enctype="multipart/form-data" class="row gutters">
+				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+					<div class="card h-100">
+						<div class="card-body">
+							<div class="account-settings">
+								<div class="user-profile" align="center">
+									<div class="user-avatar mb-3">
+										<img th:src="@{/img/}+ ${user.image}"
+											class="image-upload-profile"
+											th:unless="${user.image == null}" width="200" height="200"
+											onclick="document.getElementById('profile-image').click()" />
+										<img th:src="@{/img/blank.jpg}"
+											th:unless="${user.image != null}"
+											class="image-upload-profile" width="200" height="200"
+											onclick="document.getElementById('profile-image').click()" />
+										<input class="form-control" name="profileImage" type="file"
+											onchange="getImagePreviewUpadate(event)" id="profile-image"
+											hidden="true">
+									</div>
+									<h5 class="user-name mt-3"
+										th:text="${#strings.capitalize(user.firstname)}+ ' ' +${#strings.capitalize(user.lastname)}"></h5>
+									<h6 class="user-email mt-3" th:text="${user.email}"></h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+					<div class="card h-100">
+						<div class="card-body">
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<h4 class="mb-3 text-warning">Personal Details</h4>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+									<div class="form-group">
+										<label for="firstname">Firstname</label> <input type="text"
+											class="form-control" id="firstname" th:field="*{firstname}"
+											placeholder="Enter firstname">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+									<div class="form-group">
+										<label for="eMail">Email</label> <input type="email"
+											class="form-control" id="eMail" placeholder="Enter email ID"
+											th:field="*{email}">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
+									<div class="form-group">
+										<label for="lastname">Lastname</label> <input type="text"
+											class="form-control" id="lastname"
+											placeholder="Enter lastname" th:field="*{lastname}">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
+									<div class="form-group">
+										<label for="username">Username</label> <input type="text"
+											class="form-control" id="username" placeholder="username"
+											th:field="*{username}">
+									</div>
+								</div>
+							</div>
+
+							<div class="row gutters mt-3">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-right d-flex flex-row">
+										<div class="m-2">
+											<a href="/" class="btn btn-danger text-black fw-bold">
+													Cancel
+											</a>
+										</div>
+										<div class="m-2">
+											<button type="submit" name="submit" class="btn add-btn">Update</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+</section>
+</html>

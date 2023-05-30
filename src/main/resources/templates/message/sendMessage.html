@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<section>
+
+	<div class="main-con">
+		<div class="card">
+			<h1 class="card-header"
+				th:text="${contact.firstname} + ' '+ ${contact.lastname}"></h1>
+		</div>
+
+	</div>
+
+</section>
+</html>

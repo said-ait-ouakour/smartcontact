@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/public::layout(~{::section})">
+	
+<!-- registration form -->
+<section>
+
+	<div class="container mt-4 p-5 w-75">
+		<div class="main">
+
+			<p class="sign" align="center">Sign in</p>
+			<form th:action="@{/login}" method="post">
+
+				<!-- error message -->
+				<div th:if="${param.error}">
+					<div class="error">Invalid username or password.</div>
+				</div>
+
+				<!-- logout message -->
+				<div th:if="${param.logout}">
+					<div class="logout">You have been logged out.</div>
+				</div>
+
+				<div class="form-group p-2">
+					<input type="text" class="un" id="username" name="username"
+						placeholder="Enter Email" autofocus="autofocus">
+				</div>
+
+				<div class="form-group p-2">
+					<input type="password" id="password" name="password" class="pass"
+						placeholder="Enter Password" />
+				</div>
+
+				<div class="form-group p-2">
+					<input type="submit" name="login-submit" id="login-submit"
+						class="submit btn" value="Log In" align="center" />
+				</div>
+			</form>
+			<div class="d-flex justify-content-around ">
+				<p class="forgot-signup">
+					<a href="/" th:href="@{/signup}">Sign up</a>
+				</p>
+				<p class="forgot-signup" align="center">
+					<a href="#">Forgot Password? </a>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+</html>

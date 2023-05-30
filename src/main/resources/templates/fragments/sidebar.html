@@ -1,0 +1,35 @@
+<div class="sidebar d-flex flex-column" th:fragment="bar">
+	<div class="d-flex flex-column h-100 justify-content-between">
+		<div>
+			<div class="p-4">
+				<a href="/"> <span><i class="bi bi-house"></i> Home</span>
+				</a>
+			</div>
+			<div class="p-4">
+				<a href="/contact/list"> <span><i
+						class="bi bi-person-lines-fill"></i> Contacts</span></a>
+			</div>
+			<div class="p-4">
+				<a href="/contact/add"><span><i
+						class="bi bi-person-fill-add"></i> Create New</span></a>
+			</div>
+			<div class="p-4">
+				<a href="/group/list"><span><i class="bi bi-people-fill"></i>
+						Groups</span></a>
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-between ">
+			<a href="/logout" class="logout">
+				<h5>
+					<i class="bi bi-box-arrow-right"></i> Logout
+				</h5>
+			</a> <a href="/user/settings" class="setting">
+				<h5>
+					<i class="bi bi-gear"></i> Settings
+				</h5>
+			</a>
+
+		</div>
+	</div>
+</div>

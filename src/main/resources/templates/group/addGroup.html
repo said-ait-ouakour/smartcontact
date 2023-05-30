@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<section>
+
+	<div class="main-con">
+		<div class="col-lg-6 offset-lg-3">
+			<div class="update-add-form">
+					<h1 th:text="${context}" align="center" style="color:#fff; padding:.4rem; background-color:#414141"></h1>
+
+				<form th:action="@{/group/add}" method="POST" th:object="${group}"
+					enctype="multipart/form-data">
+
+					<img class="image-upload" th:src="@{/img/blank.jpg}" onclick="document.getElementById('profile-image').click()" />
+
+					<div class="d-flex justify-content-around mb-3">
+						<input id="group name" class="form-control w-50 m-3"
+							th:field="*{name}" required autofocus="autofocus"
+							placeholder="Group Name" />
+					</div>
+
+					<div class="search-container" align="center">
+						<input id="search-input" onkeyup='searchGroupContact()'
+							class="form-control w-50" type="search" placeholder="Search"
+							aria-label="Search">
+
+						<div class="contact-group-search-result w-50 p-2">
+							<select class="form-select text-warning" id="show-contacts-group"
+								multiple data-live-search="true" th:field="*{contactIds}">
+							</select>
+						</div>
+					</div>
+
+					<div class="d-flex justify-content-around mb-3">
+						<input id="description" class="form-control w-50 m-3"
+							th:field="*{description}" required autofocus="autofocus"
+							placeholder="Group Description" />
+					</div>
+
+					<div class="custom-file m-3 d-flex justify-content-around">
+						<input class="form-control w-50" name="profileImage" type="file"
+								onchange="getImagePreviewUpadate(event)" id="profile-image" hidden="true">
+					</div>
+
+					<div class="form-group m-3 d-flex justify-content-around">
+						<button type="submit w-50" class="add-btn btn">Add
+							Group</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</section>
+</html>

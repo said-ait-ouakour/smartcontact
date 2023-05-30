@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<section>
+
+	<!-- registration form -->
+
+	<div class="row main-con">
+		<div class="col-lg-6 offset-lg-3">
+
+			<div th:if="${param.error}">
+				<div class="alert alert-danger">No Contact founds</div>
+			</div>
+			<div th:if="${param.updateSuccess}">
+				<div class="alert alert-info">Updated Successfully</div>
+			</div>
+
+			<div class="search-container">
+				<input onkeyup='searchContact()' id="search-input"
+					class="form-control me-2 mb-2" type="search" placeholder="Search"
+					aria-label="Search">
+
+				<div class="search-result"></div>
+			</div>
+
+
+			<div class="card contact-card mb-3"
+				th:each="contact, itrStat: ${contacts}">
+
+				<a th:href="'/contact/'+${contact.id}" class="w-100 link-card">
+					<div
+						class="contact-card-body card-body mbr-fonts-style d-flex justify-content-between">
+						<div class="p-2">
+							<span th:text=" ${#strings.capitalize(#strings.toLowerCase(contact.firstname))+' '+#strings.toUpperCase(contact.lastname)+ ' : '}">blank</span>
+						</div>
+						<div class='p-2'>
+							<span th:text="${contact.phone1}">blank</span>
+						</div>
+							<img class="img-fluid" th:src="@{/img/}+${contact.image}"
+								alt="Card image cap">
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</section>
+</html>

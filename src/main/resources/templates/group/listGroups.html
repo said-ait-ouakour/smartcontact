@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<section>
+
+	<div class="row main-con">
+		<div class="col-lg-6 offset-lg-3">
+			<div class="mb-2">
+				<div class="search-container">
+					<input onkeyup='searchGroupContact()' id="search-input"
+						class="form-control me-2 mb-2" type="search" placeholder="Search"
+						aria-label="Search">
+					<div class="search-result"></div>
+				</div>
+			</div>
+
+			<div class="card contact-card mb-3"
+				th:each="group, itrStat: ${groups}">
+
+				<div
+					class="contact-card-body card-body mbr-fonts-style d-flex justify-content-between">
+					<a th:href="'/group/'+${group.id}" class="w-100 link-card">
+						<div class="p-2">
+							<span th:text=" ${group.name}"></span>
+						</div>
+						<div class='p-2'>
+							<span
+								th:text="'Contacts Number: '+${#lists.size(group.contacts)}"></span>
+						</div> <img class="img-fluid" th:src="@{/img/}+${group.image}"
+						alt="Card image cap">
+					</a>
+				</div>
+			</div>
+
+
+			<div class="w-25">
+				<a href="/group/add">
+					<button type="submit" class="add-btn btn">Add Group</button>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</section>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="fragments/base::layout(~{::section})">
+<!-- registration form -->
+<section>
+	<div class="row main-con">
+		<div class="col-lg-6 offset-lg-3">
+
+			<!-- success message  -->
+			<div th:if="${param.success}">
+				<div class="alert alert-info">Contact Added successfully</div>
+			</div>
+
+			<div th:if="${param.error}">
+				<div class="alert alert-danger">Error saving Contact</div>
+			</div>
+
+			<div class="update-add-form">
+
+					<h1 th:text="${context}" align="center" style="color:#fff; padding:.4rem; background-color:#414141"></h1>
+				<form th:action="@{/contact/add}" method="POST"
+					th:object="${contact}" enctype="multipart/form-data">
+					<img class="image-upload" th:src="@{/img/blank.jpg}" onclick="document.getElementById('profile-image').click()" />
+					<div class="d-flex justify-content-between mb-3">
+						<input id="firstName" class="form-control w-50 m-3"
+							th:field="*{firstname}" required autofocus="autofocus"
+							placeholder="First Name" /> <input id="lastName"
+							class="form-control w-50 m-3" th:field="*{lastname}" required
+							autofocus="autofocus" placeholder="Last Name" />
+					</div>
+					<div class="d-flex justify-content-between mb-3">
+						<input id="personalEmail" class="form-control w-50 m-3"
+							th:field="*{personalEmail}" required autofocus="autofocus"
+							placeholder="Personal Email" /> <label class="control-label"
+							for="proEmail"> </label> <input id="proEmail"
+							class="form-control w-50 m-3" th:field="*{proEmail}" required
+							autofocus="autofocus" placeholder="Professional Email" />
+					</div>
+					<div class="d-flex justify-content-around mb-3">
+						<input id="phone1" class="form-control w-50 m-3"
+							th:field="*{phone1}" required autofocus="autofocus"
+							placeholder="Phone Mobile" /> <input id="phone2"
+							class="form-control w-50 m-3" th:field="*{phone2}" required
+							autofocus="autofocus" placeholder="Home Phone" />
+					</div>
+
+					<div class="d-flex justify-content-around mb-3">
+						<input id="address" class="form-control w-50 m-3"
+							th:field="*{address}" required autofocus="autofocus"
+							placeholder="Address" /> <select
+							class="form-control form-control w-50 m-3" th:field="*{gender}">
+							<option th:value="'female'">female</option>
+							<option th:value="'male'">male</option>
+						</select>
+					</div>
+
+					<div class="custom-file m-3">
+						<input class="form-control" name="profileImage" type="file" id="profile-image"
+							onchange="getImagePreviewUpadate(event)" hidden="true">
+					</div>
+
+					<div class="form-group m-3">
+						<button type="submit" class="add-btn btn">Add Contact</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+</html>
